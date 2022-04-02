@@ -24,7 +24,7 @@ def form_sample():
                             <div>
                                 <form class="login_form" method="post">
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
-                                    <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+                                    <input type="password" class="form-control" id="password" placeholder="Введите свое имя" name="password">
                                     <div class="form-group">
                                         <label for="classSelect">В каком вы классе</label>
                                         <select class="form-control" id="classSelect" name="class">
