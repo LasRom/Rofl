@@ -1,74 +1,74 @@
-from flask import Flask, request, url_for
+from flask import Flask, request, url_for, render_template
 import os
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
-@app.route('/', methods=['POST', 'GET'])
-@app.route('/index', methods=['POST', 'GET'])
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def form_sample():
     if request.method == 'GET':
-        return f'''<!doctype html>
-                        <html lang="en">
-                          <head>
-                            <meta charset="utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                            <link rel="stylesheet"
-                            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-                            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-                            crossorigin="anonymous">
-                            <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
-                            <title>Форма для чаепития с мамой Айрата</title>
-                          </head>
-                          <body>
-                            <h1>Форма для чаепития с мамой Айрата</h1>
-                            <div>
-                                <form class="login_form" method="post">
-                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
-                                    <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
-                                    <div class="form-group">
-                                        <label for="classSelect">В каком вы классе</label>
-                                        <select class="form-control" id="classSelect" name="class">
-                                          <option>7</option>
-                                          <option>8</option>
-                                          <option>9</option>
-                                          <option>10</option>
-                                          <option>11</option>
-                                        </select>
-                                     </div>
-                                    <div class="form-group">
-                                        <label for="about">Расскажите нам о себе</label>
-                                        <textarea class="form-control" id="about" rows="3" name="about"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="photo">Приложите свою фотографию</label>
-                                        <input type="file" class="form-control-file" id="photo" name="file">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="form-check">Укажите пол</label>
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="sex" id="male" value="male" checked>
-                                          <label class="form-check-label" for="male">
-                                            Мужской
-                                          </label>
-                                        </div>
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="sex" id="female" value="female">
-                                          <label class="form-check-label" for="female">
-                                            Женский
-                                          </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="acceptRules" name="accept">
-                                        <label class="form-check-label" for="acceptRules">Готов принести вкусняшки к чаю</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Записаться</button>
-                                </form>
-                            </div>
-                          </body>
-                        </html>'''
-    elif request.method == 'POST':
-        return "Вы успешно записаны!!! Ожидайте скоро она вам позвонит и пригласит попить чай"
+        return render_template('index.html', title="Топ 4 причин повеситься если у тебя PlayStation.", numbers='хуй',
+                               text="И так сейчас вы узнаете почему вам стоит или повеситься или выкинуть из окна "
+                                    "PlayStation если она у вас есть. Все причины взяты из интернета. Да в принципе "
+                                    "и так всем понятно, что playstation хуже чем xbox. Вы скажите <<4 блять причины "
+                                    "это мало>>, а я отвечу, что мне просто лень искать факты почему эта консоль "
+                                    "вариант для даунов.")
+
+
+@app.route('/first_cause', methods=['GET'])
+def first_cause():
+    if request.method == 'GET':
+        return render_template('index.html', title="Топ 4 причин повеситься если у тебя PlayStation.", numbers='1',
+                               text='С выходом более производительных модификаций Microsoft и Sony серьёзно '
+                                    'проапгрейдили свои платформы, вдохнув новую жизнь в не самые свежие устройства, '
+                                    'однако на фоне характеристик свежего «Икса», PlayStation 4 Pro выглядит уже не '
+                                    'так убедительно. Она уступает по количеству оперативки и скорости её работы (12'
+                                    ' ГБ против 8 ГБ и 326 ГГц против 218 ГГц, соответственно), частоте процессора '
+                                    '(2,3 ГГц против 2,13 ГГц) и общей производительности '
+                                    '(6 Тфлопс против 4,12 Тфлопс), одинаковым остался только минимальный объем ПЗУ,'
+                                    ' который теперь составляет 1 ТБ.')
+
+
+@app.route('/second_cause', methods=['GET'])
+def second_cause():
+    if request.method == 'GET':
+        return render_template('index.html', title="Топ 4 причин повеситься если у тебя PlayStation.", numbers='2',
+                               text='Xbox Series банально легче купить по сравнению с PS5 '
+                                    'Да, в наше сложное время сама возможность купить консоль уже является существенным'
+                                    ' преимуществом. Xbox Series X в этом плане заметно выигрывает у PS5.Во-первых, '
+                                    'консоли Microsoft время от времени появляются у официальных ритейлеров по '
+                                    'нормальной цене, а Series S прямо сейчас есть в свободной продаже практически '
+                                    'везде, да ещё и со скидкой его можно урвать. Когда в последний раз магазины '
+                                    'собирали заявки на покупку PS5 я даже не помню — в декабре вон вообще консоль'
+                                    ' продают только через «письмо счастья».')
+
+
+@app.route('/third_cause', methods=['GET'])
+def third_cause():
+    if request.method == 'GET':
+        return render_template('index.html', title="Топ 4 причин повеситься если у тебя PlayStation.", numbers='3',
+                               text='С комплектным геймпадом DualSense тоже беда — он белый, и в районе рукоятей '
+                                    'отделан фирменными узорами PlayStation (кружочками, треугольниками, квадратиками).'
+                                    ' Между ними постоянно скапливается грязь, вычистить которую бывает довольно '
+                                    'проблематично. В общем, типичные недостатки белого цвета — он выглядит круто,'
+                                    ' но пачкается. Например, с кроссовками такая же история. Особенно, когда '
+                                    'есть Айрат или Салават.')
+
+
+@app.route('/fourth_cause', methods=['GET'])
+def fourth_cause():
+    if request.method == 'GET':
+        return render_template('index.html', title="Топ 4 причин повеситься если у тебя PlayStation.", numbers='4',
+                               text='Ёмкость накопителя у Series X составляет 1 ТБ, у PS5 — 825 ГБ. Естественно, '
+                                    'пользователю от этого объёма доступно ещё меньше — 802 ГБ и 667 ГБ соответственно.'
+                                    ' На выходе получаем у Series X 135 ГБ «лишнего» дискового пространства.'
+                                    ' И они точно'
+                                    ' вам пригодятся, тем более с учётом того, что на консоль постоянно что-то ставишь'
+                                    ' из Game Pass, особенно когда ты только погрузился в экосистему Xbox и для тебя'
+                                    ' открыты десятки игр по подписке — попробовать хочется всё и сразу.'
+                                    ' Тут 25 ГБ, тут 15 ГБ, ещё пяток классических игр.')
 
 
 if __name__ == '__main__':
